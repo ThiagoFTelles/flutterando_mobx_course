@@ -1,21 +1,15 @@
 import 'package:mobx/mobx.dart';
 
-class Controller {
-  var _counter = Observable(0);
-  int get counter => _counter.value;
-  set counter(int newValue) => _counter.value = newValue;
+part 'controller.g.dart';
 
-  Action increment;
+class Controller = ControllerBase with _$Controller;
 
-  Controller() {
-    increment = Action(_increment);
+abstract class ControllerBase with Store {
+  @observable
+  int counter = 0;
 
-    autorun((_) {
-      print(counter);
-    });
-  }
-
-  _increment() {
+  @action
+  increment() {
     counter++;
   }
 }
